@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class="nav">
+  <label class='nav__logo '>❤ TodoList</label>
+  <!-- <picker mode="date" value="{{date}}" start="2015-09-01" end="2200-12-31" bindchange="bindDateChange">
+    <view class="picker">
+      当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}
+    </view>
+    </picker> -->
+  <view class="nav__add"></view>
+</view>
