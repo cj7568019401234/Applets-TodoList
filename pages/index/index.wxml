@@ -6,5 +6,23 @@
       当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}
     </view>
     </picker> -->
-  <view class="nav__add"></view>
+  <icon class="nav__add"></icon>
+</view>
+<view class="wrap">
+  <view class='todolist'>
+    <view class='collapse-panel' bindtap="handleCollapseEvent" data-type="todo">
+      <icon class="spread  {{todo.collapse ? 'collapse-rotate' : ''}}"></icon>
+      待完成
+      <icon class="todo-icon"></icon>
+      {{todo.num}}
+    </view>
+    <view wx:if="{{todoList.length}}" class='list'>
+    </view>
+    <view wx:if="{{todo.isShowed}}" class='empty center'>
+      <icon class="box"></icon>
+      <text>你还没有添加任务呢~</text>
+    </view>
+  </view>
+  <view class='donelist'>
+  </view>
 </view>

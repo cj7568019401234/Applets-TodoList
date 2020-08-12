@@ -7,21 +7,49 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    todo: {
+      isShowed: true, //是否展示
+      spread: false, //是否点击展开
+      collapse: false, //是否点击收缩
+      num: 189, //待完成任务数
+    },
+    done: {
+      isShowed: true,
+      spread: false,
+      collapse: false,
+      num: 139,
+    }
   },
   //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+  handleCollapseEvent: function(event) {
+    const {
+      type,
+    } = event.currentTarget.dataset;
+
+    const {
+      todo,
+      done,
+    } = this.data;
+
+    if (type == 'todo') {
+        this.setData({
+          todo:{
+            isShowed:!todo.isShowed,
+            spread:todo.isShowed ? false : true,
+            collapse: todo.isShowed ? true : false
+          }
+        })
+    }
+    console.log(this.data);
   },
-  onLoad: function () {
+  onLoad: function() {
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else if (this.data.canIUse){
+    } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
