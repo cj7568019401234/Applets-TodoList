@@ -18,9 +18,22 @@
     </view>
     <block wx:if="{{todo.isShowed}}">
       <view wx:if="{{todo.list.length}}" class='list list--todo'>
+        <view class='content' wx:for="{{todo.list}}" wx:key="id" data="{{item}}">
+          <view class="item-container">
+            <checkbox class="item__check" checked="{{item.isFinished ? 'checked' : ''}}" />
+            <icon class="edit-icon"></icon>
+            <view class='item__main'>
+              <label class="item__main__text">{{item.value}}</label>
+              <label class="item__main__date">{{item.endDate}}</label>
+              <label class="item__main__time">{{item.endTime}}</label>
+            </view>
+            <icon class="del-icon"></icon>
+          </view>
+          <view class="line"></view>
+        </view>
       </view>
       <view wx:else class='empty center list--todo'>
-        <icon class="box"></icon>
+        <icon class="box-icon"></icon>
         <text>你还没有添加任务呢~</text>
       </view>
     </block>
@@ -32,11 +45,11 @@
       <icon class="done-icon"></icon>
       {{done.num}}
     </view>
-     <block wx:if="{{done.isShowed}}" class='list-done'>
-      <view wx:if="{{done.list.length}}" class='list list--done' >
+    <block wx:if="{{done.isShowed}}" class='list-done'>
+      <view wx:if="{{done.list.length}}" class='list list--done'>
       </view>
       <view wx:else class='empty center list--done'>
-        <icon class="box"></icon>
+        <icon class="box-icon"></icon>
         <text>空空如也~</text>
       </view>
     </block>

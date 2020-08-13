@@ -5,25 +5,30 @@ const app = getApp()
 Page({
   data: {
     motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     todo: {
       isShowed: true, //是否展示
       spread: false, //是否点击展开
       collapse: false, //是否点击收缩
-      num: 189, //待完成任务数
-      list:[],//具体的待办事项
+      num: 0, //待完成任务数
+      list:[
+        {
+          id:1,
+          value: 'hahaha todoList开发开发开发',
+          endDate: '2020年10月12日',
+          endTime: '20:18',
+          isFinished:false
+        }
+      ],//具体的待办事项
     },
     done: {
       isShowed: true,
       spread: false,
       collapse: false,
-      num: 139,
+      num: 0,
       list:[],
     }
   },
-  //事件处理函数
+  //处理展开收缩
   handleCollapseEvent: function(event) {
     const {
       type,
@@ -37,26 +42,24 @@ Page({
     if (type == 'todo') {
         this.setData({
           todo:{
+            ...todo,
             isShowed:!todo.isShowed,
             spread:todo.isShowed ? false : true,
             collapse: todo.isShowed ? true : false,
-            // ...todo
           },
-          ...this.data
         })
     }
     if (type == 'done') {
       this.setData({
         done: {
+          ...done,
           isShowed: !done.isShowed,
           spread: done.isShowed ? false : true,
           collapse: done.isShowed ? true : false,
-          ...done
         }
       })
     }
-
-    console.log(this.data);
+    // console.log(this.data);
   },
   onLoad: function() {
     if (app.globalData.userInfo) {
@@ -85,13 +88,5 @@ Page({
         }
       })
     }
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
   }
 })
