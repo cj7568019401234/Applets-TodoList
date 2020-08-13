@@ -13,12 +13,14 @@ Page({
       spread: false, //是否点击展开
       collapse: false, //是否点击收缩
       num: 189, //待完成任务数
+      list:[],//具体的待办事项
     },
     done: {
       isShowed: true,
       spread: false,
       collapse: false,
       num: 139,
+      list:[],
     }
   },
   //事件处理函数
@@ -37,10 +39,23 @@ Page({
           todo:{
             isShowed:!todo.isShowed,
             spread:todo.isShowed ? false : true,
-            collapse: todo.isShowed ? true : false
-          }
+            collapse: todo.isShowed ? true : false,
+            // ...todo
+          },
+          ...this.data
         })
     }
+    if (type == 'done') {
+      this.setData({
+        done: {
+          isShowed: !done.isShowed,
+          spread: done.isShowed ? false : true,
+          collapse: done.isShowed ? true : false,
+          ...done
+        }
+      })
+    }
+
     console.log(this.data);
   },
   onLoad: function() {

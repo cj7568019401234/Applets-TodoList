@@ -16,13 +16,29 @@
       <icon class="todo-icon"></icon>
       {{todo.num}}
     </view>
-    <view wx:if="{{todoList.length}}" class='list'>
-    </view>
-    <view wx:if="{{todo.isShowed}}" class='empty center'>
-      <icon class="box"></icon>
-      <text>你还没有添加任务呢~</text>
-    </view>
+    <block wx:if="{{todo.isShowed}}">
+      <view wx:if="{{todo.list.length}}" class='list list--todo'>
+      </view>
+      <view wx:else class='empty center list--todo'>
+        <icon class="box"></icon>
+        <text>你还没有添加任务呢~</text>
+      </view>
+    </block>
   </view>
   <view class='donelist'>
+    <view class="collapse-panel collapse-panel--done {{done.isShowed ? '' : 'list--done'}}" bindtap="handleCollapseEvent" data-type="done">
+      <icon class="spread  {{done.collapse ? 'collapse-rotate' : ''}}"></icon>
+      已完成
+      <icon class="done-icon"></icon>
+      {{done.num}}
+    </view>
+     <block wx:if="{{done.isShowed}}" class='list-done'>
+      <view wx:if="{{done.list.length}}" class='list list--done' >
+      </view>
+      <view wx:else class='empty center list--done'>
+        <icon class="box"></icon>
+        <text>空空如也~</text>
+      </view>
+    </block>
   </view>
 </view>
