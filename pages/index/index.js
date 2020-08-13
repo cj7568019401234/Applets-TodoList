@@ -9,14 +9,19 @@ Page({
       isShowed: true, //是否展示
       spread: false, //是否点击展开
       collapse: false, //是否点击收缩
-      num: 0, //待完成任务数
       list:[
         {
           id:1,
-          value: 'hahaha todoList开发开发开发',
+          value: 'hahaha todoList开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发',
           endDate: '2020年10月12日',
           endTime: '20:18',
           isFinished:false
+        },{
+          id: 2,
+          value: '这是第二个任务啦',
+          endDate: '2020年10月12日',
+          endTime: '20:18',
+          isFinished: false
         }
       ],//具体的待办事项
     },
@@ -24,7 +29,6 @@ Page({
       isShowed: true,
       spread: false,
       collapse: false,
-      num: 0,
       list:[],
     }
   },

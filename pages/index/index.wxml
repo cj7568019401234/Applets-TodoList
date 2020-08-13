@@ -14,36 +14,36 @@
       <icon class="spread  {{todo.collapse ? 'collapse-rotate' : ''}}"></icon>
       待完成
       <icon class="todo-icon"></icon>
-      {{todo.num}}
+      {{todo.list.length}}
     </view>
-    <block wx:if="{{todo.isShowed}}">
-      <view wx:if="{{todo.list.length}}" class='list list--todo'>
-        <view class='content' wx:for="{{todo.list}}" wx:key="id" data="{{item}}">
-          <view class="item-container">
+    <view wx:if="{{todo.isShowed}}">
+      <view wx:for="{{todo.list}}" wx:key="id" data="{{item}}" class='list list--todo'>
+        <view class="item-container">
+          <view class='center'>
             <checkbox class="item__check" checked="{{item.isFinished ? 'checked' : ''}}" />
             <icon class="edit-icon"></icon>
             <view class='item__main'>
-              <label class="item__main__text">{{item.value}}</label>
-              <label class="item__main__date">{{item.endDate}}</label>
-              <label class="item__main__time">{{item.endTime}}</label>
+              <text class="item__main__text">{{item.value}}</text>
+              <text class="item__main__date">{{item.endDate}}</text>
+              <text class="item__main__time">{{item.endTime}}</text>
             </view>
-            <icon class="del-icon"></icon>
           </view>
-          <view class="line"></view>
+          <icon class="del-icon"></icon>
         </view>
+        <!-- <view class="line"></view> -->
       </view>
-      <view wx:else class='empty center list--todo'>
+      <view wx:if="{{todo.list.length<=0}}" class='empty center list--todo'>
         <icon class="box-icon"></icon>
         <text>你还没有添加任务呢~</text>
       </view>
-    </block>
+    </view>
   </view>
   <view class='donelist'>
     <view class="collapse-panel collapse-panel--done {{done.isShowed ? '' : 'list--done'}}" bindtap="handleCollapseEvent" data-type="done">
       <icon class="spread  {{done.collapse ? 'collapse-rotate' : ''}}"></icon>
       已完成
       <icon class="done-icon"></icon>
-      {{done.num}}
+      {{done.list.length}}
     </view>
     <block wx:if="{{done.isShowed}}" class='list-done'>
       <view wx:if="{{done.list.length}}" class='list list--done'>
