@@ -33,6 +33,7 @@
 .collapse-panel {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 58rpx;
   font-size: 24rpx;
   padding: 0 20rpx;
@@ -87,7 +88,6 @@
   width: 28rpx;
   height: 28rpx;
   margin-left: 65%;
-  margin-right: 10rpx;
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAFjUlEQVRoQ+1ZW2gdRRj+/z15UNGkeSre6u3J+4NCRSsoamm16dmZNMUqSARNsWKtL2JVaAreQLBSsdLoQxC0YJr5Z5uW0NJiwQgt6IP19qTWapU+xQRvEHZ/mbAb50x2z17OOQ+BDoTA2f/yff/M/LPzLcISH7jE8cN5AskM1uv1K2u1Wh8A3MTMKwAg+TMmZ8wfIpr/34RhOBEEwS/tmP2WZsD3/dsAYDUirgaAe0oCOs7MRwDgiNb6y5K+C+aVCBjgnucNMfNQ1cS2HyKORFE0UoVIaQJSyr0ZwE8DwEeIOBmG4XStVpvu7u6eNkBnZ2d7wzDsrdVqvcy8FgAeBYCrXfKGiFJqc5milCIghPgMAFY51ZsAgA+VUvvLJJZSbgCAx5jZ7Bt7TBHR3UVjFSbg+/7PiGg25vxAxAlmHiGig0WTpdkJIdYholmOC0SY+YzW+qoicQsREEKwE2w7Eb1RJEFRGyHECwDwum1PRLn4cg2EEF8BwC1W5aVSiooCK2MnpRTMrCyfU0R0a7MYTQkIIT4BgIEkQJGKlAGcZevM+BgRbcyyzSTgdhtmvr1Km6tCyLRpRPzCmvXM7pRKwA3AzJu11iNVwFT18X1/CBH3Jv5ZBUwlYFffdBul1PqqQFrxk1IeSLpT1hmxiIBbfQDoc1tlvV6/ARHf8jxvWRiGzwZBcLIK0Lw4psUCgDln5kfaLKQR2IGIw0mvd6tfr9dXep53wgYcRdGNQRB8V4ZE0Tj2LDDzsNZ6p51nEQEp5QlmXhkzfkRrvc92sJ9blTmstV5ThkDROL7vb0LEj+OCnlRK3ZFJoL+//9ooin6IDc4S0RUuqKKJ88iUiSOE+BUALjcxPc+7bnx8/MeFDuVU9xlm3h2zfVsp9ZwLpOjU5xEoE0dKuYuZt8W4tiql3skisIeZn4oNVymlPk8Dkrf58sAnz4vGkVLexcxTMa73lFJbUgkIIcyL2UPmYZWNWRR4WTtD1PO8b2O/Q0RkutP8aNjEQohTAHBzzPQypdTvZZN1wl5KeSkz/xbH/pqI/n83sxMKIf4AgB7zW09Pz4Wjo6P/dgJQ2ZiDg4MXzMzM/BP7zRDRsqwZyCTg+/42RNxVNnlF++eJ6M3EtwyBzCUkhHgYABrOhIrgct2Y+XGt9WhiWGYJZW5iIcQDRkHIzd4GgyiK1gRBcNjuVoU2sZQys4329fVd1NXV9Vcb8OWG6OrqumRsbOxPawaKtVEp5RZmfjd2fJWIXnY2+TgAyFwErRlMEtGDTt5XAOCluDs+rZTak7qJjbrmeZ5Rz8w4TUTX2IGklE8w8/ut4WvujYhPKqU+cAj8lMgwURStsFW9RS9zQohPE5UNEQdcuUQIcRQA7usQiWNEdL9TtA3MPBb/dpyI7rWfp71Ob0fE1+LpWnSZkVKuZ+agEwQQsa6UOuAQWLjUMPOLWusG5aLShcb3/WFE3NFmEhuJKKn0fOhKFxrjWORK2U4SzLxTaz1/icqqfuErpQmQcq1MFbKEEEZyMdJL5ZEF3hW6Sl3q3VmI90OqoBXvia0VNvYxRNztrvk4d4PA1Uz0zRO2GsTcZsJW3GLNGWHU52ZDGQXbbZVO27SlzKZib6606Iq6eQLXwMDAxXNzc3cCwHJEXG6AMfM5ADgXhuHUxMTE31nsUvSoXJE3l0DcDRrE3U4IXa6QZfIWkTILEYhJuCJvx+R1AMgVdZNZLEwgJtEg9iaHXRRF+1z5Ja8tGbnE87xNKR84moq5btxSBNK6kxXwLCKag2h/s09MAGBeDUz7nZdJ7NHxT0xJsiX9kc+uWPyZdZ3neWsTNS9v6SysXcSTURRNAsDBVmT70ksoC6BR9ZjZSDLX53zo/h4RD9nqWlHSaXZtI9AKiFZ8zxNopXrt8P0P/m05Xj6y0aAAAAAASUVORK5CYII=");
   background-size: 100% 100%;
 }
@@ -122,8 +122,8 @@
 
 .del-icon {
   flex: 1;
-  width: 28rpx;
-  height: 28rpx;
+  width: 30rpx;
+  height: 30rpx;
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADh0lEQVRYR8WXX4hVVRTGv+/MnZhBEpIiiBCmoCKQIB9EgiSCsbGZe/aeukQi9hDIRFIggkFYRkJQSIFkSL5kSMbUWWsuwYUh+vMiEtKDFNmLZiKBEBWpM8G9Z8W+nDvM33vOvSdoP57zrW/9ztr7rr0u8T8vFsk/Ojq6bnh4+GGSA0X0Ztaam5v7fnZ29kaePhcgjuPtJD8nuS7PbPF7M7tBcreIJN3icgG891cA3N1L8o7WzP5U1dvKAlhm8JmZvV8EhOSLAJ4OWhHp+pFFKtAGMLOjqvpSEQDn3FGSe3sCqFart0ZRtHl5ApJfZ8+SAFEEgGQA9Rn4Y4tj0jS9Xq/Xz3WeLVTAOXeM5AtFEpTVmNlhVT0YfBYAvPcNAE+UNS8Sb2YNVd2xBMA59yyA+0mOANidle9TABeKmHbRPEDymez9STO7RPKCiJxeAtAx8N5vBXAmA9ipqp+UAYjjeGcURafaycitSZKcXey34lcQx/GmKIrOZ6I9IvJhGQDn3B6SxzOPTSLyQ1eAiYmJkUqlcjET7RORd8sAeO/3ATiSVXREVX/pCjA2NnbH0NDQtSzgNVV9swyAc+51kocyj9tF5PeuALVabbjZbN7MAN5W1QNlALz37wDYHzzm5+eHGo3GP10BwkvvfQtAZGbHVDW01b6X9/4DAFMAUhFZcZuu2oqdc3+RXA/gpIg813d2AM65j0nuMrM/VHXDcq+1AK6SvAtAIiJPlQHw3iuA2MyuqOrGogA/k7zPzGZVdXsZAOfclyQfB/CTiDxYFOAcyc1mdkZVHykJcJbkFjP7TlW3FALw3n8DYBuA8yLyUEmAH0mGL/9KREIllqxVz4D3/gsATwK4KCL3lgS4TDLsfV1E4kIAzrnT2QVyTUTuLAPgvQ+NJ5z+UyKyqyjACZLPm9lNVe1pGF2ewHsfGs8tAI6LSOgH+VvgnHuP5MtBmTfT5VQnyppaGOmOqGq7Iy5ea52BwwBeDcJWq7W+Xq//3c821Gq1Dc1ms937zeyQqr5RFOAVAG8FcWhISZL81g/A+Pj4xsHBwcsZwH5Vbd+KuRVwzu0l2RlAQxu92g9Advo/CrFpmk7NzMx05oIFu1W3oFqtPjowMPBtP0nXijGzHaoa5s78CgTFfzwln6hUKlPT09Phli0GEFSTk5P3pGm64gLppTJRFP2aJElnwloRmvvPqJdk/Wj/BSgHZDAU53RlAAAAAElFTkSuQmCC");
   background-size: 100% 100%;
 }
@@ -137,11 +137,13 @@
 }
 
 checkbox .wx-checkbox-input {
-  width: 22rpx;
-  height: 22rpx;
+  width: 26rpx;
+  height: 26rpx;
   border-radius: 2px;
   border: 1px solid #515151;
 }
+
+
 
 checkbox .wx-checkbox-input-checked {
   color: #515151;
@@ -152,14 +154,14 @@ checkbox .wx-checkbox-input-checked {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20rpx;
+  padding: 18rpx;
   font-size: 24rpx;
   border-top: 0;
 }
 
 .item__main {
   width: 90%;
-  margin: 0 15rpx;
+  margin: 0 8rpx;
 }
 
 .item__main__text {
@@ -170,14 +172,14 @@ checkbox .wx-checkbox-input-checked {
 .item__main__date {
   display: inline-block;
   padding: 4rpx 4rpx 0 0;
-  font-size: 16rpx;
+  font-size: 22rpx;
   color: #ff8c00;
 }
 
 .item__main__time {
   display: inline-block;
   padding: 4rpx 4rpx 0 5rpx;
-  font-size: 16rpx;
+  font-size: 22rpx;
   color: #ff8c00;
 }
 
@@ -187,6 +189,10 @@ checkbox .wx-checkbox-input-checked {
 
 .list--done{
     border-radius: 0 0 4px 4px;
+}
+
+.end-text{
+  color:#515151;
 }
 
 .picker {
