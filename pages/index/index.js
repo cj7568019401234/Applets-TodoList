@@ -4,32 +4,54 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
+    todoList: [{
+      id: 1,
+      value: 'hahaha todoList开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发',
+      endDate: '2020年10月12日',
+      endTime: '20:18',
+      isFinished: false
+    }, {
+      id: 2,
+      value: '这是第二个任务啦',
+      endDate: '2020年10月12日',
+      endTime: '20:18',
+      isFinished: true
+    }, {
+      id: 3,
+      value: '这是第二个任务啦111~~~~~~不是的吧123445~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~',
+      endDate: '2020年10月16日',
+      endTime: '23:48',
+      isFinished: false
+    }, {
+      id: 4,
+      value: '这是第二个任务啦111~~~~~~不是的吧123445~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~',
+      endDate: '2020年10月16日',
+      endTime: '',
+      isFinished: false
+    }, {
+      id: 5,
+      value: '任务6ixixi',
+      endDate: '',
+      endTime: '',
+      isFinished: false
+    }, {
+      id: 5,
+      value: '任务6ixixi',
+      endDate: '',
+      endTime: '23:17',
+      isFinished: false
+    }], //具体的待办事项
     todo: {
       isShowed: true, //是否展示
       spread: false, //是否点击展开
       collapse: false, //是否点击收缩
-      list:[
-        {
-          id:1,
-          value: 'hahaha todoList开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发',
-          endDate: '2020年10月12日',
-          endTime: '20:18',
-          isFinished:false
-        },{
-          id: 2,
-          value: '这是第二个任务啦',
-          endDate: '2020年10月12日',
-          endTime: '20:18',
-          isFinished: false
-        }
-      ],//具体的待办事项
+      num: 0,
     },
     done: {
       isShowed: true,
       spread: false,
       collapse: false,
-      list:[],
+      num: 0
     }
   },
   //处理展开收缩
@@ -44,14 +66,14 @@ Page({
     } = this.data;
 
     if (type == 'todo') {
-        this.setData({
-          todo:{
-            ...todo,
-            isShowed:!todo.isShowed,
-            spread:todo.isShowed ? false : true,
-            collapse: todo.isShowed ? true : false,
-          },
-        })
+      this.setData({
+        todo: {
+          ...todo,
+          isShowed: !todo.isShowed,
+          spread: todo.isShowed ? false : true,
+          collapse: todo.isShowed ? true : false,
+        },
+      })
     }
     if (type == 'done') {
       this.setData({
@@ -66,31 +88,26 @@ Page({
     // console.log(this.data);
   },
   onLoad: function() {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
+    const{ todoList} = this.data.todoList;
+    console.log('todoList',todoList);
+
+    let todoNum = todoList.filter(item => {
+      return !item.isFinished;
+    }).length;
+
+    let doneNum = todoList.length - todoNum;
+
+    this.setData({
+      todo: {
+        ...todo,
+        num: todoNum
+      },
+      done: {
+        ...done,
+        num: doneNum
       }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
+    })
+
+    console.log(todoNum,doneNum);
   }
 })
