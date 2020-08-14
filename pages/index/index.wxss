@@ -83,14 +83,6 @@
   border-top: 0;
 }
 
-.list--todo {
-  /* border-bottom: 0; */
-}
-
-.list--done {
-  border-radius: 0 0 4px 4px;
-}
-
 .todo-icon {
   width: 28rpx;
   height: 28rpx;
@@ -119,6 +111,7 @@
 .edit-icon {
   width: 28rpx;
   height: 28rpx;
+  margin-left:6rpx;
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADWElEQVRYR9WXXYgVZRjH//85B86RwjaJLFAQrCSy8iYwc3MLRDbYOe87e1lXeaXdtJSXURfdeaF4sRkadZMIw84864GlwuyEhHdRFLEoVJKkIrUYorCcmSfew5zDuJ11z+zsEZrbeWd+v+fj/SLuwzM5OflkmqYfq+qzAI6JyIcA1KE5bP7ExMQzlUqlRfKRHOvTOI7fHLpABj9P8mFV/UNVT3ued8iBVfUjETk4tAwYY3YAOOfgAK56nrdnZmbmkjHmA5LvZxLv9QR839/med4JALtJFhE7s7CwMNlqtdrdFGfwb0muz0CnROT13PtpkgdU9a8eyBgzT3LbKnriTrVafTQMw1vu2yXwmwAeyiSOishUo9HYTPI7kptV9UJPwFrb6UpVnQLww6AiSZJcazab8258EAQvpGl6Nov8MsndaZq+Q/Lt7N/TAF4juQXAjSRJRvsJvCIirUEFuuMcXFXPAXgQQAceRdGVLCtHuhLZ+BvtdvtlJ74mAo1GY5fneV/2gzug7/tPVCqVnwDUVXUhSZJd3ayVFsjgZwGsWxp5Dn4ewGMOrqp7ZmdnnUznKSVgjBkjObdaeCkBBwfwBckagCskX+zWfJDIS2XAWrtXVZtduKqOisjvuXm+heSF5dKeb/DCJRgfH6/V6/U/AWxwkS8DdzXfBOBmmqaj+ZovnV2FBYwx+0meVNXbSZJsbzabvy2JvAcn+WoURd/fa0oXFrDW/gLgaVWdFpG3BoX7vv9crVabD8NwcdUlyLr+m073klujKPo1W2hczZeN3Bjj3rtM/RjHsdukek+hDFhrIwBWVb8SkX3W2ucBuE3lDZIPuJr3S3tePI7juza6gQWCINikqpcBeAA+B7AVwM5uKK4nPM8b7VfzNRGw1h4G8G6fhroE4Hi1Wv0sDMO/+zVcaYGxsbH6yMjI9dz+3iYpqnpcRL5eaeMqLRAEweOq+rOquj3/xOLi4sm5ublrK4FzM8Qt2Z3mXXUP+L6/sVar/ROG4Z1BwWsqUBSaH1+6BGXg2TpRvgRlJP4fGTDGpO44XvRQOmBmdpA8oqoqIm4h++9SXOJYPqBD58R9UUTuOvrnl+KnAHyiqi8VvJisKOAid3cBAPvjOL7YNwMr/mVIA4pcwYai8C/pKmFOMUamxwAAAABJRU5ErkJggg==");
   background-size: 100% 100%;
 }
@@ -162,12 +155,11 @@ checkbox .wx-checkbox-input-checked {
   padding: 20rpx;
   font-size: 24rpx;
   border-top: 0;
-  border-bottom: 0;
 }
 
 .item__main {
   width: 90%;
-  margin: 0 10rpx;
+  margin: 0 15rpx;
 }
 
 .item__main__text {
@@ -189,12 +181,12 @@ checkbox .wx-checkbox-input-checked {
   color: #ff8c00;
 }
 
-.line {
-  background: #a9a9a9;
-  /* margin:20rpx; */
-  width: 95%;
-  height: 2rpx;
-  /* transform: scaleY(0.5); *//* margin-bottom:5rpx; */
+.donelist .item-container:last-of-type{
+  border-radius:0 0 4px 4px;
+} 
+
+.list--done{
+    border-radius: 0 0 4px 4px;
 }
 
 .picker {

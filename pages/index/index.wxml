@@ -14,55 +14,51 @@
       <icon class="spread  {{todo.collapse ? 'collapse-rotate' : ''}}"></icon>
       待完成
       <icon class="todo-icon"></icon>
-      {{todo.num}}
+      {{todoNum}}
     </view>
-    <view wx:if="{{todo.isShowed}}">
-      <view wx:for="{{todoList}}" wx:key="id" data="{{item}}" class='list list--todo'>
-        <view wx:if="{{!item.isFinished}}" class="item-container">
-          <view class='center item-left'>
-            <checkbox class="item__check" checked="{{item.isFinished ? 'checked' : ''}}" />
-            <icon class="edit-icon"></icon>
-            <view class='item__main'>
-              <text class="item__main__text">{{item.value}}</text>
-              <text wx:if="{{item.endDate}}" class="item__main__date">{{item.endDate}}</text>
-              <text wx:if="{{item.endTime}}" class="item__main__time">{{item.endTime}}</text>
-            </view>
+    <block wx:if="{{todo.isShowed}}" wx:for="{{todoList}}" wx:key="id" data="{{item}}" class='list'>
+      <view wx:if="{{!item.isFinished}}" class="item-container list">
+        <view class='center item-left'>
+          <checkbox class="item__check" checked="{{item.isFinished ? 'checked' : ''}}" />
+          <!-- <icon class="edit-icon"></icon> -->
+          <view class='item__main'>
+            <text class="item__main__text">{{item.value}}</text>
+            <text wx:if="{{item.endDate}}" class="item__main__date">{{item.endDate}}</text>
+            <text wx:if="{{item.endTime}}" class="item__main__time">{{item.endTime}}</text>
           </view>
-          <icon class="del-icon"></icon>
         </view>
+        <icon class="del-icon"></icon>
       </view>
-      <view wx:if="{{todo.num<=0}}" class='empty center list--todo'>
+      <view wx:if="{{!todoNum}}" class='empty center list--todo'>
         <icon class="box-icon"></icon>
         <text>你还没有添加任务呢~</text>
       </view>
-    </view>
+    </block>
   </view>
   <view class='donelist'>
     <view class="collapse-panel collapse-panel--done {{done.isShowed ? '' : 'list--done'}}" bindtap="handleCollapseEvent" data-type="done">
       <icon class="spread  {{done.collapse ? 'collapse-rotate' : ''}}"></icon>
       已完成
       <icon class="done-icon"></icon>
-      {{done.num}}
+      {{doneNum}}
     </view>
-    <view wx:if="{{done.isShowed}}" class='list-done'>
-      <view wx:for="{{todoList}}" wx:key="id" data="{{item}}" class='list list--done'>
-        <view wx:if="{{item.isFinished}}" class="item-container">
-          <view class='center item-left'>
-            <checkbox class="item__check" checked="{{item.isFinished ? 'checked' : ''}}" />
-            <icon class="edit-icon"></icon>
-            <view class='item__main'>
-              <text class="item__main__text">{{item.value}}</text>
-              <text wx:if="{{item.endDate}}" class="item__main__date">{{item.endDate}}</text>
-              <text wx:if="{{item.endTime}}" class="item__main__time">{{item.endTime}}</text>
-            </view>
+    <block wx:if="{{done.isShowed}}" wx:for="{{todoList}}" wx:key="id" data="{{item}}" class='list'>
+      <view wx:if="{{item.isFinished}}" class="item-container list">
+        <view class='center item-left'>
+          <checkbox class="item__check" checked="{{item.isFinished ? 'checked' : ''}}" />
+          <!-- <icon class="edit-icon"></icon> -->
+          <view class='item__main'>
+            <text class="item__main__text">{{item.value}}</text>
+            <text wx:if="{{item.endDate}}" class="item__main__date">{{item.endDate}}</text>
+            <text wx:if="{{item.endTime}}" class="item__main__time">{{item.endTime}}</text>
           </view>
-          <icon class="del-icon"></icon>
         </view>
+        <icon class="del-icon"></icon>
       </view>
-      <view wx:if="{{done.num<=0}}" class='empty center list--done'>
+      <view wx:if="{{!doneNum}}" class='empty center list--done'>
         <icon class="box-icon"></icon>
         <text>空空如也~</text>
       </view>
-    </view>
+    </block>
   </view>
 </view>
