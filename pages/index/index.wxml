@@ -1,13 +1,38 @@
 <!--index.wxml-->
 <view class="nav">
   <label class='nav__logo '>❤ TodoList</label>
-  <!-- <picker mode="date" value="{{date}}" start="2015-09-01" end="2200-12-31" bindchange="bindDateChange">
-    <view class="picker">
-      当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}
-    </view>
-    </picker> -->
-  <icon class="nav__add"></icon>
+  <icon class="nav__add" bindtap="showModal"></icon>
 </view>
+<view wx:if="{{showModal}}" class='modal__mask'>
+  <view class="modal">
+    <view class='modal__header'>
+      请编辑任务
+      <icon class='modal__close' bindtap="closeModal"></icon>
+    </view>
+    <view class='modal__input'>
+      <textarea placeholder="请输入任务" class="todo-input" value="{{value}}" bindblur="bindTextAreaBlur"></textarea>
+    </view>
+    <view class='modal__body'>
+      <picker mode="date" value="{{endDate}}" start="2000-01-01" end="2200-12-31" bindchange="bindDateChange">
+        <view class="pick">
+          <input placeholder="截止日期" value="{{endDate}}" />
+          <icon class='date-icon'></icon>
+        </view>
+      </picker>
+      <picker mode="time" start="2015-09-01" end="2200-12-31" bindchange="bindTimeChange">
+        <view class="pick">
+          <input placeholder="截止时间" value="{{endTime}}" />
+          <icon class='time-icon'></icon>
+        </view>
+      </picker>
+    </view>
+    <view class='modal__footer'>
+      <view class='btn' bindtap="closeModal">取消</view>
+      <view class='btn confirm-btn' bindtap="bindSubmit">确认</view>
+    </view>
+  </view>
+</view>
+
 <view class="wrap">
   <view class='todolist'>
     <view class='collapse-panel' bindtap="handleCollapseEvent" data-type="todo">
