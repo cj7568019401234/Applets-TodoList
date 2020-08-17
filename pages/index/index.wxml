@@ -28,7 +28,7 @@
     </view>
     <view class='modal__footer'>
       <view class='btn' bindtap="closeModal">取消</view>
-      <view class='btn confirm-btn' bindtap="bindSubmit">确认</view>
+      <view class='btn confirm-btn' bindtap="bindSubmit" data-id="{{id}}">确认</view>
     </view>
   </view>
 </view>
@@ -42,17 +42,16 @@
       {{todoNum}}
     </view>
     <block wx:if="{{todo.isShowed}}" wx:for="{{todoList}}" wx:key="id" data="{{item}}" class='list'>
-      <view wx:if="{{!item.isFinished}}" class="item-container list">
+      <view wx:if="{{!item.isFinished}}" class="item-container list" bindtap="bindEdit" data-id="{{item.id}}">
         <view class='center item-left'>
-          <checkbox class="item__check" checked="{{item.isFinished ? 'checked' : ''}}" />
-          <!-- <icon class="edit-icon"></icon> -->
+          <checkbox class="item__check" checked="{{item.isFinished ? 'checked' : ''}}" catchtap="bindToggle" data-id="{{item.id}}" />
           <view class='item__main'>
             <text class="item__main__text">{{item.value}}</text>
             <text wx:if="{{item.endDate}}" class="item__main__date">{{item.endDate}}</text>
             <text wx:if="{{item.endTime}}" class="item__main__time">{{item.endTime}}</text>
           </view>
         </view>
-        <icon class="del-icon" bindtap="bindDelete" data-id="{{item.id}}"></icon>
+        <icon class="del-icon" catchtap="bindDelete" data-id="{{item.id}}"></icon>
       </view>
     </block>
     <view wx:if="{{!todoNum && todo.isShowed}}" class='empty center list--todo'>
@@ -68,17 +67,16 @@
       {{doneNum}}
     </view>
     <block wx:if="{{done.isShowed}}" wx:for="{{todoList}}" wx:key="id" data="{{item}}" class='list'>
-      <view wx:if="{{item.isFinished}}" class="item-container list">
+      <view wx:if="{{item.isFinished}}" class="item-container list" bindtap="bindEdit" data-id="{{item.id}}">
         <view class='center item-left'>
-          <checkbox class="item__check" checked="{{item.isFinished ? 'checked' : ''}}" />
-          <!-- <icon class="edit-icon"></icon> -->
+          <checkbox class="item__check" checked="{{item.isFinished ? 'checked' : ''}}" catchtap="bindToggle" data-id="{{item.id}}" />
           <view class='item__main'>
             <text class="item__main__text">{{item.value}}</text>
             <text wx:if="{{item.endDate}}" class="end-text item__main__date">{{item.endDate}}</text>
             <text wx:if="{{item.endTime}}" class="end-text item__main__time">{{item.endTime}}</text>
           </view>
         </view>
-        <icon class="del-icon" bindtap="bindDelete" data-id="{{item.id}}"></icon>
+        <icon class="del-icon" catchtap="bindDelete" data-id="{{item.id}}"></icon>
       </view>
     </block>
     <view wx:if="{{!doneNum && done.isShowed}}" class='empty center list--done'>

@@ -5,6 +5,7 @@ const app = getApp()
 Page({
   data: {
     showModal: false,
+    id: '', //正在编辑的任务的id
     value: '', //正在编辑的任务的内容
     endDate: '', //正在编辑的任务的截止日期 
     endTime: '', //正在编辑的任务的截止时间
@@ -21,45 +22,7 @@ Page({
       spread: false,
       collapse: false,
     },
-    todoList: [
-      // {
-      //   id: 1,
-      //   value: 'hahaha todoList开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发',
-      //   endDate: '2020年10月12日',
-      //   endTime: '20:18',
-      //   isFinished: false
-      // }, {
-      //   id: 2,
-      //   value: '这是第二个任务啦',
-      //   endDate: '2020年10月12日',
-      //   endTime: '20:18',
-      //   isFinished: true
-      // }, {
-      //   id: 3,
-      //   value: '这是第二个任务啦111~~~~~~不是的吧123445~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~',
-      //   endDate: '2020年10月16日',
-      //   endTime: '23:48',
-      //   isFinished: false
-      // }, {
-      //   id: 4,
-      //   value: '这是第二个任务啦111~~~~~~不是的吧123445~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~',
-      //   endDate: '2020年10月16日',
-      //   endTime: '',
-      //   isFinished: false
-      // }, {
-      //   id: 5,
-      //   value: '任务6ixixi',
-      //   endDate: '',
-      //   endTime: '',
-      //   isFinished: false
-      // }, {
-      //   id: 6,
-      //   value: '任务6ixixi',
-      //   endDate: '',
-      //   endTime: '23:17',
-      //   isFinished: false
-      // }
-    ], //具体的待办事项
+    todoList: [], //具体的待办事项
   },
   //处理展开收缩
   handleCollapseEvent: function(event) {
@@ -133,29 +96,87 @@ Page({
     })
   },
 
+
+
+
+
+
+//blur调用在submit之后的问题提没有解决,导致编辑任务的时候，直接编辑提交文案不会更新的
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //提交新增的待办事项
   bindSubmit: function(e) {
     const {
+      id,
       value,
       endDate,
       endTime,
-      todoList
+      todoList,
+      todoNum
     } = this.data;
 
     if (!value) return;
-    let id = new Date().toString().split('GMT')[0].replace(/\s+/g, '')
-    this.setData({
-      todoList: [
-        ...todoList,
-        {
-          id: id,
-          value: value,
-          endDate: endDate,
-          endTime: endTime,
-          isFinished: false
+
+    if (e.currentTarget.dataset.id) { //如果提交的数据有id，那就是编辑任务，否则是提交新的任务
+      let crrId = e.currentTarget.dataset.id;
+
+      todoList.some((item, index) => {
+        
+        if (item.id == crrId) {
+          console.log('found',value);
+          todoList[index].value = value;
+          todoList[index].endDate = endDate;
+          todoList[index].endTime = endTime;
+          return true;
         }
-      ]
-    })
+      })
+
+      this.setData({
+        id:'',
+        value:'',
+        endTime:'',
+        endDate:'',
+        todoList: todoList,
+      })
+
+    } else {
+      let id = new Date().toString().split('GMT')[0].replace(/\s+/g, '')
+
+      this.setData({
+        todoList: [
+          ...todoList,
+          {
+            id: id,
+            value: value,
+            endDate: endDate,
+            endTime: endTime,
+            isFinished: false
+          }
+        ],
+        todoNum: todoNum + 1,
+        id: '',
+        value: '',
+        endTime: '',
+        endDate: '',
+      })
+    }
 
     wx.setStorage({
       key: "todoList",
@@ -165,24 +186,112 @@ Page({
     this.closeModal(); //关闭弹窗
   },
 
+  //删除任务
   bindDelete: function(e) {
-    const id = e.dataset.id;
-    console.log(id);
+    const id = e.currentTarget.dataset.id;
+
+    let todoList = this.data.todoList.filter(item => {
+      return item.id != id
+    })
+
+    wx.setStorage({
+      key: "todoList",
+      data: todoList
+    });
+
+    let todoNum = todoList.filter(item => { //统计未完成任务数量
+      return !item.isFinished;
+    }).length
+
+    let doneNum = todoList.length - todoNum;
+    this.setData({
+      todoList: todoList,
+      todoNum: todoNum,
+      doneNum: doneNum
+    })
   },
+
+  //扭转任务状态
+  bindToggle: function(e) {
+    const id = e.currentTarget.dataset.id;
+
+    let {
+      todoList,
+      todoNum,
+      doneNum
+    } = this.data;
+
+    let status = 0;
+    let index = todoList.some((item, index) => {
+      if (item.id == id) {
+        todoList[index].isFinished = !todoList[index].isFinished;
+        if (todoList[index].isFinished) {
+          status = 1;
+        }
+        return true;
+      }
+    })
+
+    this.setData({
+      todoNum: status == 1 ? todoNum - 1 : todoNum + 1,
+      doneNum: status == 1 ? doneNum + 1 : doneNum - 1,
+      todoList: todoList
+    })
+
+    wx.setStorage({
+      key: "todoList",
+      data: this.data.todoList
+    })
+  },
+
+  //编辑任务
+  bindEdit: function(e) {
+    const crrId = e.currentTarget.dataset.id;
+
+    console.log('bindEdit',crrId);
+
+    let {
+      id,
+      todoList,
+      value,
+      endDate,
+      endTime,
+    } = this.data;
+
+    let index = todoList.some((item, index) => {
+      if (item.id == crrId) {
+        id = crrId;
+        value = item.value;
+        endDate = item.endDate;
+        endTime = item.endTime;
+        return true;
+      }
+    })
+
+    this.setData({
+      id: id,
+      value: value,
+      endDate: endDate,
+      endTime: endTime
+    })
+
+    this.showModal();
+  },
+
   onLoad: function() {
-    // const {
-    //   todoList
-    // } = this.data;
     let todoList = [];
+
+    //获取本地数据
     try {
       todoList = wx.getStorageSync('todoList');
       if (todoList) {
-        console.log('get data success')
+        console.log('get local data success')
       }
     } catch (e) {
       console.log('get data fail:', e)
     }
-    console.log('todoList', todoList, typeof todoList);
+
+    if (typeof todoList === 'string') return; //本地没有数据直接返回
 
     let todoNum = todoList.filter(item => { //统计未完成任务数量
       return !item.isFinished;
@@ -196,12 +305,4 @@ Page({
       todoList: todoList
     })
   },
-
-  // onHide: function() {
-  //   console.log('is onHide');
-  // },
-
-  // onUnload: function() {
-  //   console.log('is onUnload');
-  // }
 })
