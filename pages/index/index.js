@@ -21,43 +21,45 @@ Page({
       spread: false,
       collapse: false,
     },
-    todoList: [{
-      id: 1,
-      value: 'hahaha todoList开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发',
-      endDate: '2020年10月12日',
-      endTime: '20:18',
-      isFinished: false
-    }, {
-      id: 2,
-      value: '这是第二个任务啦',
-      endDate: '2020年10月12日',
-      endTime: '20:18',
-      isFinished: true
-    }, {
-      id: 3,
-      value: '这是第二个任务啦111~~~~~~不是的吧123445~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~',
-      endDate: '2020年10月16日',
-      endTime: '23:48',
-      isFinished: false
-    }, {
-      id: 4,
-      value: '这是第二个任务啦111~~~~~~不是的吧123445~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~',
-      endDate: '2020年10月16日',
-      endTime: '',
-      isFinished: false
-    }, {
-      id: 5,
-      value: '任务6ixixi',
-      endDate: '',
-      endTime: '',
-      isFinished: false
-    }, {
-      id: 6,
-      value: '任务6ixixi',
-      endDate: '',
-      endTime: '23:17',
-      isFinished: false
-    }], //具体的待办事项
+    todoList: [
+      // {
+      //   id: 1,
+      //   value: 'hahaha todoList开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发开发',
+      //   endDate: '2020年10月12日',
+      //   endTime: '20:18',
+      //   isFinished: false
+      // }, {
+      //   id: 2,
+      //   value: '这是第二个任务啦',
+      //   endDate: '2020年10月12日',
+      //   endTime: '20:18',
+      //   isFinished: true
+      // }, {
+      //   id: 3,
+      //   value: '这是第二个任务啦111~~~~~~不是的吧123445~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~',
+      //   endDate: '2020年10月16日',
+      //   endTime: '23:48',
+      //   isFinished: false
+      // }, {
+      //   id: 4,
+      //   value: '这是第二个任务啦111~~~~~~不是的吧123445~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~',
+      //   endDate: '2020年10月16日',
+      //   endTime: '',
+      //   isFinished: false
+      // }, {
+      //   id: 5,
+      //   value: '任务6ixixi',
+      //   endDate: '',
+      //   endTime: '',
+      //   isFinished: false
+      // }, {
+      //   id: 6,
+      //   value: '任务6ixixi',
+      //   endDate: '',
+      //   endTime: '23:17',
+      //   isFinished: false
+      // }
+    ], //具体的待办事项
   },
   //处理展开收缩
   handleCollapseEvent: function(event) {
@@ -123,6 +125,7 @@ Page({
       endDate: e.detail.value
     })
   },
+
   //获取任务的截止时间
   bindTimeChange: function(e) {
     this.setData({
@@ -154,13 +157,32 @@ Page({
       ]
     })
 
+    wx.setStorage({
+      key: "todoList",
+      data: this.data.todoList
+    })
+
     this.closeModal(); //关闭弹窗
   },
 
+  bindDelete: function(e) {
+    const id = e.dataset.id;
+    console.log(id);
+  },
   onLoad: function() {
-    const {
-      todoList
-    } = this.data;
+    // const {
+    //   todoList
+    // } = this.data;
+    let todoList = [];
+    try {
+      todoList = wx.getStorageSync('todoList');
+      if (todoList) {
+        console.log('get data success')
+      }
+    } catch (e) {
+      console.log('get data fail:', e)
+    }
+    console.log('todoList', todoList, typeof todoList);
 
     let todoNum = todoList.filter(item => { //统计未完成任务数量
       return !item.isFinished;
@@ -170,7 +192,16 @@ Page({
 
     this.setData({
       todoNum: todoNum,
-      doneNum: doneNum
+      doneNum: doneNum,
+      todoList: todoList
     })
-  }
+  },
+
+  // onHide: function() {
+  //   console.log('is onHide');
+  // },
+
+  // onUnload: function() {
+  //   console.log('is onUnload');
+  // }
 })

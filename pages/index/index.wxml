@@ -52,7 +52,7 @@
             <text wx:if="{{item.endTime}}" class="item__main__time">{{item.endTime}}</text>
           </view>
         </view>
-        <icon class="del-icon"></icon>
+        <icon class="del-icon" bindtap="bindDelete" data-id="{{item.id}}"></icon>
       </view>
     </block>
     <view wx:if="{{!todoNum && todo.isShowed}}" class='empty center list--todo'>
@@ -78,7 +78,7 @@
             <text wx:if="{{item.endTime}}" class="end-text item__main__time">{{item.endTime}}</text>
           </view>
         </view>
-        <icon class="del-icon"></icon>
+        <icon class="del-icon" bindtap="bindDelete" data-id="{{item.id}}"></icon>
       </view>
     </block>
     <view wx:if="{{!doneNum && done.isShowed}}" class='empty center list--done'>
