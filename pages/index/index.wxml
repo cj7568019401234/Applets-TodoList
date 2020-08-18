@@ -9,27 +9,29 @@
       请编辑任务
       <icon class='modal__close' bindtap="closeModal"></icon>
     </view>
-    <view class='modal__input'>
-      <textarea placeholder="请输入任务" class="todo-input" value="{{value}}" bindblur="bindTextAreaBlur"></textarea>
-    </view>
-    <view class='modal__body'>
-      <picker mode="date" value="{{endDate}}" start="2000-01-01" end="2200-12-31" bindchange="bindDateChange">
-        <view class="pick">
-          <input placeholder="截止日期" value="{{endDate}}" />
-          <icon class='date-icon'></icon>
-        </view>
-      </picker>
-      <picker mode="time" start="2015-09-01" end="2200-12-31" bindchange="bindTimeChange">
-        <view class="pick">
-          <input placeholder="截止时间" value="{{endTime}}" />
-          <icon class='time-icon'></icon>
-        </view>
-      </picker>
-    </view>
-    <view class='modal__footer'>
-      <view class='btn' bindtap="closeModal">取消</view>
-      <view class='btn confirm-btn' bindtap="bindSubmit" data-id="{{id}}">确认</view>
-    </view>
+    <form bindsubmit="bindFormSubmit" data-id="{{id}}">
+      <view class='modal__input'>
+        <textarea placeholder="请输入任务" name="textarea" class="todo-input" value="{{value}}"></textarea>
+      </view>
+      <view class='modal__body'>
+        <picker mode="date" value="{{endDate}}" start="2000-01-01" end="2200-12-31" bindchange="bindDateChange">
+          <view class="pick">
+            <input placeholder="截止日期" value="{{endDate}}" name='date'/>
+            <icon class='date-icon'></icon>
+          </view>
+        </picker>
+        <picker mode="time" start="2015-09-01" end="2200-12-31"  bindchange="bindTimeChange"> 
+          <view class="pick">
+            <input placeholder="截止时间" value="{{endTime}}" name='time' />
+            <icon class='time-icon'></icon>
+          </view>
+        </picker>
+      </view>
+      <view class='modal__footer'>
+        <button  class='btn' size='mini' bindtap="closeModal">取消</button >
+        <button class='btn confirm-btn' form-type="submit" size='mini' >确认</button>
+      </view>
+    </form>
   </view>
 </view>
 

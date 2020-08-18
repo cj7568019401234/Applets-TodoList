@@ -262,6 +262,7 @@ checkbox .wx-checkbox-input-checked {
 }
 
 .todo-input {
+  overflow: scroll;
   width: 90%;
   height: 140rpx;
   padding: 14rpx;
@@ -298,10 +299,10 @@ checkbox .wx-checkbox-input-checked {
 
 .btn {
   display: inline-block;
-  margin: 22rpx;
+  margin: 20rpx;
   margin-left: 0;
-  padding: 6rpx 26rpx;
-  font-size: 24rpx;
+  padding: 6rpx 26rpx !important;
+  font-size: 24rpx !important;
   color: rgba(0, 0, 0, 0.65);
   border-radius: 2px;
   background: #fff;

@@ -55,7 +55,6 @@ Page({
         }
       })
     }
-    // console.log(this.data);
   },
 
   //展示任务编辑框
@@ -75,13 +74,6 @@ Page({
     })
   },
 
-  //获取文本输入框的任务内容
-  bindTextAreaBlur: function(e) {
-    this.setData({
-      value: e.detail.value
-    })
-  },
-
   //获取任务的截止日期
   bindDateChange: function(e) {
     this.setData({
@@ -96,15 +88,7 @@ Page({
     })
   },
 
-
-
-
-
-
-//blur调用在submit之后的问题提没有解决,导致编辑任务的时候，直接编辑提交文案不会更新的
-
-
-
+  //textarea长度过长怎么解决
 
 
 
@@ -122,15 +106,16 @@ Page({
 
 
   //提交新增的待办事项
-  bindSubmit: function(e) {
+  bindFormSubmit: function(e) {
     const {
       id,
-      value,
-      endDate,
-      endTime,
       todoList,
       todoNum
     } = this.data;
+
+    let value = e.detail.value.textarea;
+    let endDate = e.detail.value.date;
+    let endTime = e.detail.value.time;
 
     if (!value) return;
 
@@ -138,9 +123,7 @@ Page({
       let crrId = e.currentTarget.dataset.id;
 
       todoList.some((item, index) => {
-        
         if (item.id == crrId) {
-          console.log('found',value);
           todoList[index].value = value;
           todoList[index].endDate = endDate;
           todoList[index].endTime = endTime;
@@ -149,16 +132,15 @@ Page({
       })
 
       this.setData({
-        id:'',
-        value:'',
-        endTime:'',
-        endDate:'',
+        id: '',
+        value: '',
+        endTime: '',
+        endDate: '',
         todoList: todoList,
       })
 
     } else {
       let id = new Date().toString().split('GMT')[0].replace(/\s+/g, '')
-
       this.setData({
         todoList: [
           ...todoList,
@@ -248,8 +230,6 @@ Page({
   bindEdit: function(e) {
     const crrId = e.currentTarget.dataset.id;
 
-    console.log('bindEdit',crrId);
-
     let {
       id,
       todoList,
@@ -274,7 +254,6 @@ Page({
       endDate: endDate,
       endTime: endTime
     })
-
     this.showModal();
   },
 
